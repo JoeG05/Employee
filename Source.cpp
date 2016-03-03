@@ -1,9 +1,13 @@
 #include <string>
 #include <iostream>
+#include <vector>
+#include <algorithm>
+
 
 using namespace std;
 
 class Employee{
+
 private:
 	string name, social;
 public:
@@ -12,7 +16,18 @@ public:
 	{
 		cout << name << " - " << social << endl;
 	}
+
+	string checkName() const {
+		return name;
+	}
 };
+
+bool operator==(const Employee &a, const Employee &b)
+{
+	if (a.checkName() == b.checkName())
+		return true;
+	return false;
+}
 
 class Hourly : Employee{
 private:
@@ -34,12 +49,69 @@ public:
 
 };
 
+class Salaried : Employee{
+private:
+	double salary;
+public:
+	Salaried(string name, string social, double salary) : Employee(name, social), salary(salary){}
+	double weeklySalary(double salary)
+	{
+		return salary / 52;
+	}
+	void print(){
+		Employee::print();
+		cout << "Salary:  $" << salary << endl;
+		cout << "Weekly:  $" << weeklySalary(salary) << endl;
+	}
+
+};
+
+class Roster{
+
+private:
+	vector<Employee> staff;
+public:
+	void add(Employee e){
+		if (doesExist(e))
+		{
+			cout << "Employee already exists" << endl;
+			return;
+		}
+		staff.push_back(e);
+	}
+
+	void remove(){}
+
+	void print(){
+		for (std::vector<Employee>::iterator it = staff.begin(); it != staff.end(); ++it)
+		{
+			it->print();
+			cout << endl;
+		}
+	}
+
+	bool doesExist(Employee e){
+		if (std::find(staff.begin(), staff.end(), e) != staff.end())
+			return true;
+		return false;
+	}
+
+} roster;
+
 int main()
 {
 	Employee emp1("Joe", "12345");
-	emp1.print();
+	
 
 	Hourly emp2("Bob", "12346", 15, 40);
-	emp2.print();
+	Salaried emp3("Chris", "12347", 52000);
+
+	
+	roster.add(emp1);
+	roster.add(emp1);
+	
+	roster.print();
+	
+	
 	system("Pause");
 }
