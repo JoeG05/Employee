@@ -12,13 +12,20 @@ To Do:
     virtual print(name - social)
   
   
-Employee --> Hourly
+~~Employee --> Hourly~~
 
     private (dbl wage, hours)
     print (name - social
         wage:   wage
         hours:  hours
         earned: (hours * wage) + ((hours % 40) * (wage * .5))
+        
+Employee --> Salaried
+
+    private (dbl salary)
+    print (name - social
+        yearly salary
+        weekly salary (salary / 52)
         
 Roster
 
