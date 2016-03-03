@@ -80,7 +80,9 @@ public:
 		staff.push_back(e);
 	}
 
-	void remove(){}
+	void remove(Employee e){
+		staff.erase(std::remove(staff.begin(), staff.end(), e), staff.end());
+	}
 
 	void print(){
 		for (std::vector<Employee>::iterator it = staff.begin(); it != staff.end(); ++it)
@@ -109,7 +111,9 @@ int main()
 
 	
 	roster.add(emp1);
+	roster.remove(emp1);
 	roster.add(emp1);
+	roster.remove(emp1);
 	roster.add(emp5);
 	
 	roster.print();
