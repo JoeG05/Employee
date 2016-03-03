@@ -29,7 +29,7 @@ bool operator==(const Employee &a, const Employee &b)
 	return false;
 }
 
-class Hourly : Employee{
+class Hourly : public Employee{
 private:
 	double wage, hours;
 public:
@@ -49,7 +49,7 @@ public:
 
 };
 
-class Salaried : Employee{
+class Salaried : public Employee{
 private:
 	double salary;
 public:
@@ -112,10 +112,13 @@ int main()
 	
 	roster.add(emp1);
 	roster.remove(emp1);
+
 	roster.add(emp1);
 	roster.remove(emp1);
+
 	roster.add(emp5);
-	
+
+	roster.add((Employee)emp2);
 	roster.print();
 	
 	
