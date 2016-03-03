@@ -17,14 +17,14 @@ public:
 		cout << name << " - " << social << endl;
 	}
 
-	string checkName() const {
-		return name;
+	string checkSoc() const {
+		return social;
 	}
 };
 
 bool operator==(const Employee &a, const Employee &b)
 {
-	if (a.checkName() == b.checkName())
+	if (a.checkSoc() == b.checkSoc())
 		return true;
 	return false;
 }
@@ -101,6 +101,7 @@ public:
 int main()
 {
 	Employee emp1("Joe", "12345");
+	Employee emp5("Joe", "12345");
 	
 
 	Hourly emp2("Bob", "12346", 15, 40);
@@ -109,6 +110,7 @@ int main()
 	
 	roster.add(emp1);
 	roster.add(emp1);
+	roster.add(emp5);
 	
 	roster.print();
 	
