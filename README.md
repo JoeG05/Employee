@@ -6,7 +6,7 @@ OOP HW2 - Spring '26
 
 To Do:
 
-Employee class
+~~Employee class~~
 
     private (str name, social)
     virtual print(name - social)
