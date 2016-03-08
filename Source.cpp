@@ -22,29 +22,26 @@ public:
 };
 
 void Employee::print() const{
-	cout << "Name: " << name << endl;
-	cout << "Social: " << social << endl;
+	cout << "Name:    " << name << endl;
+	cout << "Social:  " << social << endl;
 }
 
 
 
 class Hourly : public Employee{
 private:
-	double wage, hours, earned;
+	double wage, hours;
+	
 public:
 	Hourly(string name, string social, double wage, double hours) : Employee(name, social), wage(wage), hours(hours){}
-	void calcEarned(double wage, double hours)
-	{
-		double overtime = 0;
-		if (hours > 40)
-			overtime = hours - 40;
-		earned = (hours * wage) + (overtime * (wage * .5));
-	}
+	
 	void print() const{
+		double overtime = hours - 40;
+		
 		Employee::print();
 		cout << "Wage:   $" << wage << endl;
-		cout << "Hours:  $" << hours << endl;
-		cout << "Earned: $" << earned << endl;
+		cout << "Hours:   " << hours << endl;
+		cout << "Earned: $" << (hours * wage) + (overtime * (wage * .5)) << endl;
 	}
 		
 
@@ -52,14 +49,14 @@ public:
 
 class Salaried : public Employee{
 private:
-	double salary, weekly;
+	double salary;
 public:
 	Salaried(string name, string social, double salary) : Employee(name, social), salary(salary){}
 	
 	void print() const {
 		Employee::print() ;
 		cout << "Salary:  $" << salary << endl;
-		cout << "Weekly:  $" << weekly << endl;
+		cout << "Weekly:  $" << salary / 52 << endl;
 	}
 
 };
@@ -110,7 +107,7 @@ public:
 
 int main()
 {
-	Hourly emp1("Joe", "12345", 12.6, 50);
+	Hourly emp1("Joe", "12345", 10, 50);
 	Salaried emp2("Bob", "12346", 52000);
 
 	
